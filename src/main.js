@@ -9,6 +9,8 @@ function setCardType(type){
     const color = {
         "visa": [ "#436D99", "#2D57F2" ],
         "mastercard":[ "#DF6F29", "#C69347" ],
+        "amex":["#292D98", "#8F00FF"],
+        "rocket":["#BC31ED", "#FF2DC4"],
         "default":["black", "gray" ]
     }
 
@@ -16,7 +18,7 @@ function setCardType(type){
     ccBgColor02.setAttribute('fill', color[type][1]);
     ccLogo.setAttribute('src', `cc-${type}.svg`)
 }
-
+//setCardType("amex");
 globalThis.setCardType = setCardType
 
 const securityCode = document.querySelector('#security-code');
@@ -51,11 +53,21 @@ const cardNumberPattern = {
             mask: "0000 0000 0000 0000",
             regex: /^4\d{0,15}/,
             cardtype: "visa",
-        },
+        },//
         {
             mask: "0000 0000 0000 0000",
             regex: /(^5[1-5]\d{0,2}|^22[2-9]\d|^2[3-7]\d{0,2})\d{0,12}/,
             cardtype: "mastercard",
+        },
+        {
+            mask: "0000 0000 0000 0000",
+            regex: /^3[47]\d{0,13}/,
+            cardtype: "amex",
+        },
+        {
+            mask: "000 00 000 0000 0000",
+            regex: /^9\d{0,15}/,
+            cardtype: "rocket",
         },
         {
             mask: "0000 0000 0000 0000",
